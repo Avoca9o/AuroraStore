@@ -1,10 +1,19 @@
 #include "helper.h"
 #include <iostream>
+#include <fstream>
 
-void Helper::install_() const {
-    std::cout << "installed\n";
+Helper::Helper() {
+    x = 0;
 }
 
-void Helper::delete_() const {
-    std::cout << "deleted\n";
+void Helper::install_() {
+    ++x;
+}
+
+void Helper::delete_() {
+    ++x;
+}
+
+int Helper::getx_() const {
+    return x;
 }
