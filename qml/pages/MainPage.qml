@@ -67,10 +67,13 @@ Page {
             id: mouseArea
             anchors.fill: parent
             onClicked: {
-                helper.install_()
-                console.log("clicked")
-                rectangle2.visible = true
-                parent.visible = false
+                if (helper.getx_() < 5) {
+                    rectangle2.visible = true
+                    parent.visible = false
+                    helper.install_()
+                }
+
+
             }
         }
     }
@@ -95,10 +98,11 @@ Page {
             id: mouseArea2
             anchors.fill: parent
             onClicked: {
-                helper.delete_()
-                console.log("clicked")
-                parent.visible = false
-                rectangle1.visible = true
+                if (helper.getx_() < 5) {
+                    parent.visible = false
+                    rectangle1.visible = true
+                    helper.delete_()
+                }
             }
         }
     }
