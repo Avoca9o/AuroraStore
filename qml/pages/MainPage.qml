@@ -50,15 +50,14 @@ Page {
 
     Rectangle {
         id: rectangle1
-        x: parent.width / 3
+        x: parent.width / 8
         y: 6 * parent.height / 16
-//            anchors.centerIn: parent
-        width: parent.width / 3
+        width: 6 * parent.width / 8
         height: parent.height / 16
         color: "purple"
         Text {
             anchors.centerIn: parent
-            text: "install"
+            text: "скачать котика"
             color: "white"
             font { bold: true; pixelSize: 48 }
         }
@@ -67,13 +66,9 @@ Page {
             id: mouseArea
             anchors.fill: parent
             onClicked: {
-                if (helper.getx_() < 5) {
-                    rectangle2.visible = true
-                    parent.visible = false
-                    helper.install_()
-                }
-
-
+                rectangle2.visible = true
+                parent.visible = false
+                helper.download_();
             }
         }
     }
@@ -81,15 +76,14 @@ Page {
     Rectangle {
         visible: false;
         id: rectangle2
-        x: parent.width / 3
+        x: parent.width / 8
         y: 10 * parent.height / 16
-//            anchors.centerIn: parent
-        width: parent.width / 3
+        width: 6 * parent.width / 8
         height: parent.height / 16
         color: "purple"
         Text {
             anchors.centerIn: parent
-            text: "delete"
+            text: "удалить котика"
             color: "white"
             font { bold: true; pixelSize: 48 }
         }
@@ -98,11 +92,9 @@ Page {
             id: mouseArea2
             anchors.fill: parent
             onClicked: {
-                if (helper.getx_() < 5) {
-                    parent.visible = false
-                    rectangle1.visible = true
-                    helper.delete_()
-                }
+                parent.visible = false
+                rectangle1.visible = true
+                helper.delete_()
             }
         }
     }
