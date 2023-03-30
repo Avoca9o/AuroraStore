@@ -46,6 +46,9 @@ SOURCES += \
     src/helper.cpp \
     src/main.cpp
 
+QT += \
+    network
+
 HEADERS += \
     src/helper.h
 

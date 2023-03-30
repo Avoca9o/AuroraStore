@@ -3,17 +3,26 @@
 #include <fstream>
 
 Helper::Helper() {
-    x = 0;
+    nam = new QNetworkAccessManager();
+    connect(nam, &QNetworkAccessManager::finished, this, &Helper::onImageDownloaded_);
 }
 
-void Helper::install_() {
-    ++x;
+void Helper::download_() {
+    QNetworkRequest request(url);
+    nam->get(request);
+
 }
 
 void Helper::delete_() {
-    ++x;
+    QDir dir("/" + path);
+    dir.remove("cat.jpg");
+
 }
 
-int Helper::getx_() const {
-    return x;
+void Helper::onImageDownloaded_(QNetworkReply *reply) {
+    QFile fout("/" + path + "cat.jpg");
+    fout.open(QIODevice::ReadWrite);
+    QTextStream stream(&fout);
+    stream << reply->readAll();
+    fout.close();
 }
