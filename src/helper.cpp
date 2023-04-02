@@ -1,28 +1,40 @@
 #include "helper.h"
-#include <iostream>
-#include <fstream>
 
-Helper::Helper() {
-    nam = new QNetworkAccessManager();
-    connect(nam, &QNetworkAccessManager::finished, this, &Helper::onImageDownloaded_);
+Helper::Helper(QObject *parent) :
+    QObject(parent)
+{
+
+}
+
+Helper::~Helper() { }
+
+void Helper::fileDownloaded(QNetworkReply* pReply) {
+    m_DownloadedData = pReply->readAll();
+    QString filename = path + "me/defaultuser/Pictures/Default/tiger.jpg";
+        QFile file(filename);
+        if (file.open(QIODevice::ReadWrite)) {
+            QTextStream stream(&file);
+            stream << m_DownloadedData << endl;
+        }
+    emit downloaded();
 }
 
 void Helper::download_() {
-    QNetworkRequest request(url);
-    nam->get(request);
+    QUrl imageUrl("https://media.istockphoto.com/id/1347184195/photo/tiger-stands-on-a-rock-against-the-background-of-the-evening-mountain.jpg");
+    connect(
+        &m_WebCtrl, SIGNAL (finished(QNetworkReply*)),
+        this, SLOT (fileDownloaded(QNetworkReply*))
+    );
 
+
+    QNetworkRequest request(imageUrl);
+    m_WebCtrl.get(request);
 }
 
 void Helper::delete_() {
-    QDir dir("/" + path);
-    dir.remove("cat.jpg");
-
+    QFile::remove(path + "me/defaultuser/Pictures/Default/tiger.jpg");
 }
 
-void Helper::onImageDownloaded_(QNetworkReply *reply) {
-    QFile fout("/" + path + "cat.jpg");
-    fout.open(QIODevice::ReadWrite);
-    QTextStream stream(&fout);
-    stream << reply->readAll();
-    fout.close();
+QByteArray Helper::downloadedData() const {
+    return m_DownloadedData;
 }

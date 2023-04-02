@@ -2,34 +2,33 @@
 #define HELPER_H
 
 #include <QObject>
+#include <QByteArray>
+#include <QFile>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
-#include <QUrl>
-#include <QString>
-#include <QFile>
-#include <QDir>
-#include <QTextStream>
+
+#include <iostream>
 
 class Helper : public QObject
 {
     Q_OBJECT
-
 public:
-    Helper();
-
+    explicit Helper(QObject *parent = 0);
+    virtual ~Helper();
+    QByteArray downloadedData() const;
     Q_INVOKABLE void download_();
-
     Q_INVOKABLE void delete_();
 
-    virtual ~Helper() {}
+signals:
+    void downloaded();
 
-private:
-    QNetworkAccessManager *nam;
-    const QUrl url = QUrl("https://cdn.lifehacker.ru/wp-content/uploads/2018/12/Kak-fotografirovat-kotikov-19-sovetov-ot-professionala_1544744286-640x320.jpg");
-    const QString path = "home/defaultuser/Pictures/Default/";
-
-    void onImageDownloaded_(QNetworkReply *reply);
+private slots:
+    void fileDownloaded(QNetworkReply* pReply);
+    private:
+    QNetworkAccessManager m_WebCtrl;
+    QByteArray m_DownloadedData;
+    const QString path = "/ho";
 };
 
 #endif // HELPER_H
