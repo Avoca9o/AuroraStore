@@ -47,6 +47,15 @@ Page {
     Helper {
         id: helper
     }
+//    Timer {
+//        id: timer
+//    }
+//    function delay(delayTime,cb) {
+//        timer.interval = delayTime;
+//        timer.repeat = false;
+//        timer.triggered.connect(cb);
+//        timer.start();
+//    }
 
     Rectangle {
         id: rectangle1
@@ -66,9 +75,10 @@ Page {
             id: mouseArea
             anchors.fill: parent
             onClicked: {
+                helper.download_();
+                console.log("File must be downloaded")
                 rectangle2.visible = true
                 parent.visible = false
-                helper.download_();
             }
         }
     }
