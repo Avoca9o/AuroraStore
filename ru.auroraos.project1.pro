@@ -38,9 +38,12 @@
 TARGET = ru.auroraos.project1
 
 CONFIG += \
-    auroraapp
+    auroraapp \
+    link_pkgconfig
 
 PKGCONFIG += \
+    sailfishmdm \
+    sailfishpolicy
 
 SOURCES += \
     src/helper.cpp \

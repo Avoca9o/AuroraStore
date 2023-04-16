@@ -10,6 +10,8 @@
 
 #include <iostream>
 
+#include "mdm-applications.h"
+
 class Helper : public QObject
 {
     Q_OBJECT
