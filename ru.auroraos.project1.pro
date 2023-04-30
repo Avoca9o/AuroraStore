@@ -39,13 +39,13 @@ TARGET = ru.auroraos.project1
 
 CONFIG += \
     auroraapp \
-    link_pkgconfig
 
 PKGCONFIG += \
-    sailfishmdm \
+#    sailfishmdm \
     sailfishpolicy
 
 SOURCES += \
+    src/applicationlistviewmanager.cpp \
     src/helper.cpp \
     src/main.cpp
 
@@ -53,6 +53,7 @@ QT += \
     network
 
 HEADERS += \
+    src/applicationlistviewmanager.h \
     src/helper.h
 
 DISTFILES += \

@@ -1,36 +1,39 @@
 #ifndef HELPER_H
 #define HELPER_H
 
-#include <QObject>
-#include <QByteArray>
+#include <QCoreApplication>
 #include <QFile>
+#include <QFileInfo>
+#include <QList>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QStringList>
+#include <QTimer>
+#include <QUrl>
 
-#include <iostream>
+#include <stdio.h>
 
-#include "mdm-applications.h"
+//#include "mdm-applications.h"
 
 class Helper : public QObject
 {
     Q_OBJECT
+    QNetworkAccessManager manager;
+    QNetworkAccessManager AppListManager;
+    QNetworkReply *currentDownload;
+    const QString path = "/ho";
 public:
-    explicit Helper(QObject *parent = 0);
+    Helper();
     virtual ~Helper();
-    QByteArray downloadedData() const;
+    void doDownload(const QUrl& url);
+    bool saveToDisk(const QString& data);
     Q_INVOKABLE void download_();
     Q_INVOKABLE void delete_();
 
-signals:
-    void downloaded();
-
-private slots:
-    void fileDownloaded(QNetworkReply* pReply);
-    private:
-    QNetworkAccessManager m_WebCtrl;
-    QByteArray m_DownloadedData;
-    const QString path = "/ho";
+public slots:
+    void downloadFinished(QNetworkReply *reply);
+    void downloadApplicationListFinished(QNetworkReply *replyAL);
 };
 
 #endif // HELPER_H

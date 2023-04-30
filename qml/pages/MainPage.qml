@@ -36,75 +36,106 @@
 *******************************************************************************/
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Sailfish.Silica 1.0
 import Template 1.0
 
 
-Page {
-    id: page
-    allowedOrientations: Orientation.All
+ApplicationWindow {
+    id: applicationWindow
+    allowedOrientations: defaultAllowedOrientations
 
     Helper {
         id: helper
     }
-//    Timer {
-//        id: timer
-//    }
-//    function delay(delayTime,cb) {
-//        timer.interval = delayTime;
-//        timer.repeat = false;
-//        timer.triggered.connect(cb);
-//        timer.start();
-//    }
 
-    Rectangle {
-        id: rectangle1
-        x: parent.width / 8
-        y: 6 * parent.height / 16
-        width: 6 * parent.width / 8
-        height: parent.height / 16
-        color: "purple"
-        Text {
-            anchors.centerIn: parent
-            text: "скачать котика"
-            color: "white"
-            font { bold: true; pixelSize: 48 }
-        }
+    ApplicationListViewManager {
+        id: applicationManager
+    }
 
-        MouseArea {
-            id: mouseArea
-            anchors.fill: parent
-            onClicked: {
-                helper.download_();
-                console.log("File must be downloaded")
-                rectangle2.visible = true
-                parent.visible = false
+//     Rectangle {
+//         id: rectangle1
+//         x: parent.width / 8
+//         y: 6 * parent.height / 16
+//         width: 6 * parent.width / 8
+//         height: parent.height / 16
+//         color: "purple"
+//         Text {
+//             anchors.centerIn: parent
+//             text: "скачать котика"
+//             color: "white"
+//             font { bold: true; pixelSize: 48 }
+//         }
+
+//         MouseArea {
+//             id: mouseArea
+//             anchors.fill: parent
+//             onClicked: {
+//                 helper.download_();
+//                 console.log("File must be downloaded")
+//                 rectangle2.visible = true
+//                 parent.visible = false
+//             }
+//         }
+//     }
+
+//     Rectangle {
+//         visible: false;
+//         id: rectangle2
+//         x: parent.width / 8
+//         y: 10 * parent.height / 16
+//         width: 6 * parent.width / 8
+//         height: parent.height / 16
+//         color: "purple"
+//         Text {
+//             anchors.centerIn: parent
+//             text: "удалить кaтика"
+//             color: "white"
+//             font { bold: true; pixelSize: 48 }
+//         }
+
+//         MouseArea {
+//             id: mouseArea2
+//             anchors.fill: parent
+//             onClicked: {
+//                 parent.visible = false
+//                 rectangle1.visible = true
+//                 helper.delete_()
+//             }
+//         }
+//     }
+    Button {
+        anchors.centerIn: parent
+        id: button
+        width: 200
+        height: 100
+        text: "push me"
+        onClicked: {
+            applicationManager.download()
+            while (applicationManager.hasNext()) {
+                dataModel.append({text: applicationManager.getName() + " " + applicationManager.getVersion() + " " + applicationManager.getAuthor()})
             }
+            listView.visible = true
+            button.visible = false
         }
     }
 
-    Rectangle {
-        visible: false;
-        id: rectangle2
-        x: parent.width / 8
-        y: 10 * parent.height / 16
-        width: 6 * parent.width / 8
-        height: parent.height / 16
-        color: "purple"
-        Text {
-            anchors.centerIn: parent
-            text: "удалить котика"
-            color: "white"
-            font { bold: true; pixelSize: 48 }
-        }
+    ListModel {
+        id: dataModel
+    }
 
-        MouseArea {
-            id: mouseArea2
-            anchors.fill: parent
-            onClicked: {
-                parent.visible = false
-                rectangle1.visible = true
-                helper.delete_()
+    ListView {
+        id: listView
+        visible: false
+        anchors.fill: parent
+        model: dataModel
+        delegate: Rectangle {
+            width: parent.width
+            height: 100
+            color: model.color
+            Text {
+                anchors.centerIn: parent
+                text: model.text
             }
         }
     }

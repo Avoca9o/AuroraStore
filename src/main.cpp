@@ -37,12 +37,14 @@
 
 #include <auroraapp.h>
 #include "helper.h"
+#include "applicationlistviewmanager.h"
 #include <QtQuick>
 
 
 int main(int argc, char *argv[])
 {
     qmlRegisterType<Helper>("Template", 1, 0, "Helper");
+    qmlRegisterType<ApplicationListViewManager>("Template", 1, 0, "ApplicationListViewManager");
 
     QScopedPointer<QGuiApplication> application(Aurora::Application::application(argc, argv));
     application->setOrganizationName(QStringLiteral("ru.auroraos"));
