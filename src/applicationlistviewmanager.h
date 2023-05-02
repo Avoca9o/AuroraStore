@@ -20,9 +20,12 @@ public:
     virtual ~ApplicationListViewManager();
     Q_INVOKABLE void download();
     Q_INVOKABLE bool hasNext();
+    Q_INVOKABLE QString getId();
     Q_INVOKABLE QString getName();
     Q_INVOKABLE QString getVersion();
     Q_INVOKABLE QString getAuthor();
+
+    Q_INVOKABLE void invoke(QString id);
 
 private:
     struct Application {

@@ -44,6 +44,10 @@ bool ApplicationListViewManager::hasNext() {
     return i != base.size();
 }
 
+QString ApplicationListViewManager::getId() {
+    return QString::number(i);
+}
+
 QString ApplicationListViewManager::getName() {
     return base[i].name;
 }
@@ -54,6 +58,10 @@ QString ApplicationListViewManager::getVersion() {
 
 QString ApplicationListViewManager::getAuthor() {
     return base[i++].author;
+}
+
+void ApplicationListViewManager::invoke(QString id) {
+    qDebug() << id << '\n';
 }
 
 ApplicationListViewManager::~ApplicationListViewManager() {}

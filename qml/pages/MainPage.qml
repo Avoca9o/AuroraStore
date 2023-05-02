@@ -113,7 +113,17 @@ ApplicationWindow {
         onClicked: {
             applicationManager.download()
             while (applicationManager.hasNext()) {
-                dataModel.append({text: applicationManager.getName() + " " + applicationManager.getVersion() + " " + applicationManager.getAuthor()})
+                if (parseInt(applicationManager.getId()) % 2 == 0) {
+                    dataModel.append({id: applicationManager.getId(),
+                                     text: applicationManager.getName() + " " + applicationManager.getVersion() + "\n" + applicationManager.getAuthor(),
+                                     color: "orange"})
+                } else {
+                    dataModel.append({id: applicationManager.getId(),
+                                     text: applicationManager.getName() + " " + applicationManager.getVersion() + "\n" + applicationManager.getAuthor(),
+                                     color: "grey"})
+                }
+
+
             }
             listView.visible = true
             button.visible = false
@@ -131,11 +141,17 @@ ApplicationWindow {
         model: dataModel
         delegate: Rectangle {
             width: parent.width
-            height: 100
+            height: 150
             color: model.color
             Text {
                 anchors.centerIn: parent
                 text: model.text
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    applicationManager.invoke(model.id);
+                }
             }
         }
     }

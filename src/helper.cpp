@@ -11,7 +11,7 @@ Helper::Helper()
             SLOT(downloadApplicationListFinished(QNetworkReply*)));
     QUrl url("http://5.63.153.190:8000/");
     QNetworkRequest request(url);
-   currentDownload = AppListManager.get(request);
+    currentDownload = AppListManager.get(request);
 }
 
 void Helper::doDownload(const QUrl &url)
