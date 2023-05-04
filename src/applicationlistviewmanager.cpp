@@ -5,8 +5,10 @@
 #include <QJsonObject>
 #include <QVariantMap>
 #include <QThread>
+#include <QDBusMessage>
+#include <QtDBus/QDBusConnection>
 
-ApplicationListViewManager::ApplicationListViewManager()
+ApplicationListViewManager::ApplicationListViewManager() : dBusAdapter()
 {
 }
 
@@ -61,7 +63,16 @@ QString ApplicationListViewManager::getAuthor() {
 }
 
 void ApplicationListViewManager::invoke(QString id) {
-    qDebug() << id << '\n';
+    QDBusMessage message = QDBusMessage::createMethodCall("ru.auroraos.aurorastore",
+                                                          "/ru/auroraos/aurorastore",
+                                                          "ru.auroraos.project1",
+                                                          "installPackage");
+
+    QList<QVariant> args;
+    args.append(path + "me/defaultuser/myapp.rpm");
+    message.setArguments(args);
+
+    QDBusConnection::sessionBus().call(message);
 }
 
 ApplicationListViewManager::~ApplicationListViewManager() {}

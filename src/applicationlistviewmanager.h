@@ -12,6 +12,8 @@
 #include <QTimer>
 #include <QUrl>
 
+#include "dbusadapter.h"
+
 class ApplicationListViewManager : public QObject
 {
     Q_OBJECT
@@ -39,6 +41,7 @@ private:
     QString path = "/ho";
     QVector<Application> base;
     int i;
+    DBusAdapter dBusAdapter;
 };
 
 #endif // APPLICATIONLISTVIEWMANAGER_H

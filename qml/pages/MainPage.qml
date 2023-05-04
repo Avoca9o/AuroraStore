@@ -150,6 +150,7 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
+                    helper.download_()
                     applicationManager.invoke(model.id);
                 }
             }

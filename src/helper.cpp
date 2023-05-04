@@ -54,13 +54,6 @@ void Helper::downloadFinished(QNetworkReply *reply)
 {
     saveToDisk(path + "me/defaultuser/myapp.rpm");
     reply->deleteLater();
-
-//    Sailfish::Mdm::Applications *mdmApplications = new Sailfish::Mdm::Applications();
-//    QObject::connect(mdmApplications->installPackage(path + "me/defaultuser/myapp.rpm"),
-//                     &Sailfish::Mdm::ApplicationOperation::finished,
-//                     [mdmApplications](Sailfish::Mdm::ApplicationOperation *operation) {
-//        mdmApplications->deleteLater();
-//    });
 }
 
 void Helper::download_() {
@@ -73,5 +66,5 @@ void Helper::delete_() {
 }
 
 Helper::~Helper() {
-    QFile::remove(path + "me/defaultuser/data.json");
+    QFile::remove(path + "me/defaultuser/applications.json");
 }
