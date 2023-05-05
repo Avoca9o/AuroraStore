@@ -54,7 +54,7 @@ QT += \
     network \
     dbus
 
-DBUS_SERVICE_NAME=ru.auroraos.aurorastore
+DBUS_ADAPTORS = src/dbus/ru.auroraos.aurorastore.xml
 
 HEADERS += \
     src/applicationlistviewmanager.h \
