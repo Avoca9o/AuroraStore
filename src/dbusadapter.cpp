@@ -4,7 +4,7 @@
 #include <QDebug>
 
 const char *SERVICE_NAME = "ru.auroraos.aurorastore";
-const char *OBJECT_PATH = "/ru/aurorsos/aurorastore";
+const char *OBJECT_PATH = "/ru/auroraos/aurorastore";
 
 DBusAdapter::DBusAdapter()
 {
@@ -22,7 +22,7 @@ DBusAdapter::DBusAdapter()
 
 DBusAdapter::~DBusAdapter() {}
 
-void DBusAdapter::installPackage(const QString path) {
+void DBusAdapter::installPackage(QString path) {
     qDebug() << "I'm in\n";
     Sailfish::Mdm::Applications *mdmApplications = new Sailfish::Mdm::Applications();
     QObject::connect(mdmApplications->installPackage(path),

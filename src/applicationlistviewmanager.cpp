@@ -65,14 +65,15 @@ QString ApplicationListViewManager::getAuthor() {
 void ApplicationListViewManager::invoke(QString id) {
     QDBusMessage message = QDBusMessage::createMethodCall("ru.auroraos.aurorastore",
                                                           "/ru/auroraos/aurorastore",
-                                                          "ru.auroraos.project1",
+                                                          "ru.auroraos.aurorastore",
                                                           "installPackage");
 
     QList<QVariant> args;
     args.append(path + "me/defaultuser/myapp.rpm");
     message.setArguments(args);
 
-    QDBusConnection::sessionBus().call(message);
+    auto replpy = QDBusConnection::sessionBus().call(message);
+    qDebug() << replpy.errorMessage();
 }
 
 ApplicationListViewManager::~ApplicationListViewManager() {}

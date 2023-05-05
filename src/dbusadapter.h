@@ -14,7 +14,7 @@ public:
     virtual ~DBusAdapter();
 
 public slots:
-    void installPackage(const QString path);
+    void installPackage(QString path);
     void quit();
 };
 
