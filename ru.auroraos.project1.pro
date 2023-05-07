@@ -58,6 +58,10 @@ dbus_adaptor.files = ./src/dbus/ru.auroraos.aurorastore.xml
 
 DBUS_ADAPTORS += dbus_adaptor
 
+service.files += ./src/dbus/ru.auroraos.aurorastore.service
+
+INSTALLS += service
+
 HEADERS += \
     src/applicationlistviewmanager.h \
     src/dbusadapter.h \

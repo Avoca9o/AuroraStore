@@ -18,7 +18,7 @@ class ApplicationListViewManager : public QObject
 {
     Q_OBJECT
 public:
-    ApplicationListViewManager();
+    ApplicationListViewManager(QObject *parent = nullptr);
     virtual ~ApplicationListViewManager();
     Q_INVOKABLE void download();
     Q_INVOKABLE bool hasNext();
@@ -41,7 +41,7 @@ private:
     QString path = "/ho";
     QVector<Application> base;
     int i;
-    DBusAdapter dBusAdapter;
+    const DBusAdapter dBusAdapter;
 };
 
 #endif // APPLICATIONLISTVIEWMANAGER_H

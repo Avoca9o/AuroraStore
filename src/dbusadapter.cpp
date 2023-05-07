@@ -3,13 +3,13 @@
 #include <QDBusConnectionInterface>
 #include <QDebug>
 
-const char *SERVICE_NAME = "ru.auroraos.aurorastore";
-const char *OBJECT_PATH = "/ru/auroraos/aurorastore";
+const char *SERVICE_NAME = "ru.auroraos.project1";
+const char *OBJECT_PATH = "/ru/auroraos/project1";
 
-DBusAdapter::DBusAdapter()
+DBusAdapter::DBusAdapter(QObject *parent) : QDBusAbstractAdaptor(parent)
 {
     QDBusConnection connection = QDBusConnection::sessionBus();
-    if (!connection.registerObject(OBJECT_PATH, this)) {
+    if (!connection.registerObject(OBJECT_PATH, parent)) {
         qFatal("Cannot register object at %s", SERVICE_NAME);
     }
 
@@ -31,8 +31,4 @@ void DBusAdapter::installPackage(QString path) {
         mdmApplications->deleteLater();
     });
     qDebug() << "Packages installed\n";
-}
-
-void DBusAdapter::quit() {
-
 }

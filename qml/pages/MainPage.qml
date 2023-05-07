@@ -50,6 +50,7 @@ ApplicationWindow {
     }
 
     ApplicationListViewManager {
+
         id: applicationManager
     }
 

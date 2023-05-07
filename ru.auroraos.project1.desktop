@@ -11,3 +11,4 @@ Permissions=
 OrganizationName=ru.auroraos
 ApplicationName=project1
 ExecDBus=/usr/bin/ru.auroraos.project1
+ExportDBusInterfaces=ru.auroraos.project1

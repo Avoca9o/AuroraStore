@@ -23,12 +23,10 @@
  **/
 -->
 
-<node name="/ru/auroraos/aurorastore">
-  <interface name="ru.auroraos.aurorastore">
+<node name="/ru/auroraos/project1">
+  <interface name="ru.auroraos.project1">
     <method name="installPackage">
       <arg direction="in" type="s" name="path"/>
-    </method>
-    <method name="quit">
     </method>
    </interface>
 </node>

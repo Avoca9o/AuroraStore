@@ -8,7 +8,7 @@
 #include <QDBusMessage>
 #include <QtDBus/QDBusConnection>
 
-ApplicationListViewManager::ApplicationListViewManager() : dBusAdapter()
+ApplicationListViewManager::ApplicationListViewManager(QObject *parent) : dBusAdapter(this)
 {
 }
 
@@ -63,9 +63,9 @@ QString ApplicationListViewManager::getAuthor() {
 }
 
 void ApplicationListViewManager::invoke(QString id) {
-    QDBusMessage message = QDBusMessage::createMethodCall("ru.auroraos.aurorastore",
-                                                          "/ru/auroraos/aurorastore",
-                                                          "ru.auroraos.aurorastore",
+    QDBusMessage message = QDBusMessage::createMethodCall("ru.auroraos.project1",
+                                                          "/ru/auroraos/project1",
+                                                          "ru.auroraos.project1",
                                                           "installPackage");
 
     QList<QVariant> args;
