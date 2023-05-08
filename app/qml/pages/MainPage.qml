@@ -60,13 +60,15 @@ ApplicationWindow {
     Button {
         anchors.centerIn: parent
         id: button
-        width: 200
+        width: 230
         height: 100
         text: "Applications"
         onClicked: {
             if (!helper.checkInternetConnection_()) {
-                pageLoader.source = "Error.qml"
-                helper.quit_()
+                noInternetMessage.visible = true
+                exitButton.visible = true
+                button.visible = false
+                return
             }
 
             applicationManager.download()
@@ -108,6 +110,12 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
+                    if (!helper.checkInternetConnection_()) {
+                        noInternetMessage.visible = true
+                        exitButton.visible = true
+                        listView.visible = false
+                        return
+                    }
                     helper.download_(model.id);
                     applicationManager.invoke(model.id);
                 }
@@ -115,5 +123,24 @@ ApplicationWindow {
         }
     }
 
+    Text {
+        id: noInternetMessage
+        text: "Нет интернета!"
+        color: "red"
+        x: 230
+        y: 400
+        visible: false
+    }
 
+    Button {
+        anchors.centerIn: parent
+        id: exitButton
+        width: 150
+        height: 100
+        text: "Выйти"
+        visible: false
+        onClicked: {
+            helper.quit_()
+        }
+    }
 }

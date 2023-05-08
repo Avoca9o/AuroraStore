@@ -24,7 +24,7 @@
 -->
 
 <node name="/dbusAdaptor">
-  <interface name="dbusAdaptor">
+  <interface name="dbusAdaptor.ru">
     <method name="installPackage">
       <arg direction="in" type="s" name="path"/>
     </method>

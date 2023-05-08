@@ -1,8 +1,6 @@
 #include "helper.h"
 #include <stdlib.h>
 
-//#include "mdm-applications.h"
-
 Helper::Helper()
 {
     connect(&manager, SIGNAL(finished(QNetworkReply*)),

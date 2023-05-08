@@ -63,17 +63,17 @@ QString ApplicationListViewManager::getAuthor() {
 }
 
 void ApplicationListViewManager::invoke(QString id) {
-    QDBusMessage message = QDBusMessage::createMethodCall("dbusAdaptor",
-                                                          "/dbusAdaptor",
-                                                          "dbusAdaptor",
-                                                          "installPackage");
+//    QDBusMessage message = QDBusMessage::createMethodCall("dbusAdaptor.ru",
+//                                                          "/dbusAdaptor",
+//                                                          "dbusAdaptor.ru",
+//                                                          "installPackage");
 
-    QList<QVariant> args;
-    args.append(path + "me/defaultuser/" + id + ".rpm");
-    message.setArguments(args);
+//    QList<QVariant> args;
+//    args.append(path + "me/defaultuser/" + id + ".rpm");
+//    message.setArguments(args);
 
-    auto replpy = QDBusConnection::sessionBus().call(message);
-    qDebug() << replpy.errorMessage();
+//    auto replpy = QDBusConnection::sessionBus().call(message);
+//    qDebug() << replpy.errorMessage();
 }
 
 ApplicationListViewManager::~ApplicationListViewManager() {}

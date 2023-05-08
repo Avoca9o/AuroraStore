@@ -57,7 +57,7 @@ QT += \
     dbus \
     core
 
-target.path = /usr/bin
+target.path = /usr/lib/
 
 dbus_adaptor.files = ./src/dbus/dbusAdaptor.xml
 

@@ -10,9 +10,9 @@
 class DBusAdaptor : public QDBusAbstractAdaptor
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "dbusAdaptor")
+    Q_CLASSINFO("D-Bus Interface", "dbusAdaptor.ru")
     Q_CLASSINFO("D-Bus Introspection", ""
-"<interface name=\"dbusAdaptor\">\n"
+"<interface name=\"dbusAdaptor.ru\">\n"
 "   <method name=\"installPackage\">"
 "       arg direction=\"in\" type=\"s\" name=\"path\""
 "   </method>\n"
