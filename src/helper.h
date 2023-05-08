@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-//#include "mdm-applications.h"
+#include "mdm-applications.h"
 
 class Helper : public QObject
 {
@@ -28,8 +28,10 @@ public:
     virtual ~Helper();
     void doDownload(const QUrl& url);
     bool saveToDisk(const QString& data);
+    Q_INVOKABLE bool checkInternetConnection_();
     Q_INVOKABLE void download_();
     Q_INVOKABLE void delete_();
+    Q_INVOKABLE void quit_();
 
 public slots:
     void downloadFinished(QNetworkReply *reply);

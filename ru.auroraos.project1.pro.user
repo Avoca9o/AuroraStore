@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.15.2, 2023-05-07T18:18:18. -->
+<!-- Written by QtCreator 4.15.2, 2023-05-08T12:25:21. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -320,13 +320,13 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.MerRpmBuildStep</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
-      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">false</value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">SignTools.RpmSignExternalStep</value>
-      <value type="QString" key="SignTools.Cert"></value>
-      <value type="QString" key="SignTools.Key"></value>
+      <value type="QString" key="SignTools.Cert">/home/avo/AuroraOS/regular_cert.pem</value>
+      <value type="QString" key="SignTools.Key">/home/avo/AuroraOS/regular_key.pem</value>
      </valuemap>
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.2">
-      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
+      <value type="bool" key="ProjectExplorer.BuildStep.Enabled">false</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">QmakeProjectManager.MerRpmValidationStep</value>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">3</value>

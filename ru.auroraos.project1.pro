@@ -58,7 +58,8 @@ dbus_adaptor.files = ./src/dbus/ru.auroraos.aurorastore.xml
 
 DBUS_ADAPTORS += dbus_adaptor
 
-service.files += ./src/dbus/ru.auroraos.aurorastore.service
+service.files = ./src/dbus/ru.auroraos.project1.service
+service.path = /usr/share/dbus-1/services
 
 INSTALLS += service
 
@@ -68,6 +69,7 @@ HEADERS += \
     src/helper.h
 
 DISTFILES += \
+    qml/pages/Error.qml \
     rpm/ru.auroraos.project1.spec \
     AUTHORS.md \
     CODE_OF_CONDUCT.md \

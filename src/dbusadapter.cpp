@@ -8,16 +8,16 @@ const char *OBJECT_PATH = "/ru/auroraos/project1";
 
 DBusAdapter::DBusAdapter(QObject *parent) : QDBusAbstractAdaptor(parent)
 {
-    QDBusConnection connection = QDBusConnection::sessionBus();
-    if (!connection.registerObject(OBJECT_PATH, parent)) {
-        qFatal("Cannot register object at %s", SERVICE_NAME);
-    }
+//    QDBusConnection connection = QDBusConnection::sessionBus();
+//    if (!connection.registerObject(OBJECT_PATH, parent)) {
+//        qFatal("Cannot register object at %s", SERVICE_NAME);
+//    }
 
-    if (!connection.registerService(SERVICE_NAME)) {
-        qFatal("Cannot register D-Bus service at %s", SERVICE_NAME);
-    }
+//    if (!connection.registerService(SERVICE_NAME)) {
+//        qFatal("Cannot register D-Bus service at %s", SERVICE_NAME);
+//    }
 
-    qDebug("DBus adapter created\n");
+//    qDebug("DBus adapter created\n");
 }
 
 DBusAdapter::~DBusAdapter() {}

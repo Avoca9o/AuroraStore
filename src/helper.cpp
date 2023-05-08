@@ -65,6 +65,23 @@ void Helper::delete_() {
     QFile::remove(path + "me/defaultuser/myapp.rpm");
 }
 
+bool Helper::checkInternetConnection_() {
+    QTcpSocket* socket = new QTcpSocket(this);
+    socket->connectToHost("www.google.com", 80);
+    bool connected = socket->waitForConnected(30000);
+
+    if (!connected) {
+        socket->abort();
+        return false;
+    }
+    socket->close();
+    return true;
+}
+
+void Helper::quit_() {
+    exit(0);
+}
+
 Helper::~Helper() {
     QFile::remove(path + "me/defaultuser/applications.json");
 }

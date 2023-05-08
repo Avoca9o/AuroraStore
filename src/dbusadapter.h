@@ -18,7 +18,7 @@ class DBusAdapter : public QDBusAbstractAdaptor
 "</interface>\n")
 
 public:
-    DBusAdapter(QObject *parent);
+    DBusAdapter(QObject *parent = nullptr);
     virtual ~DBusAdapter();
 
 public slots:

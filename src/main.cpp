@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
 {
     qmlRegisterType<Helper>("Template", 1, 0, "Helper");
     qmlRegisterType<ApplicationListViewManager>("Template", 1, 0, "ApplicationListViewManager");
+    qmlRegisterType<DBusAdapter>("Template", 1, 0, "DBusAdapter");
 
     QScopedPointer<QGuiApplication> application(Aurora::Application::application(argc, argv));
     application->setOrganizationName(QStringLiteral("ru.auroraos"));

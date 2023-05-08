@@ -49,69 +49,26 @@ ApplicationWindow {
         id: helper
     }
 
-    ApplicationListViewManager {
+    Loader {
+        id: pageLoader
+    }
 
+    ApplicationListViewManager {
         id: applicationManager
     }
 
-//     Rectangle {
-//         id: rectangle1
-//         x: parent.width / 8
-//         y: 6 * parent.height / 16
-//         width: 6 * parent.width / 8
-//         height: parent.height / 16
-//         color: "purple"
-//         Text {
-//             anchors.centerIn: parent
-//             text: "скачать котика"
-//             color: "white"
-//             font { bold: true; pixelSize: 48 }
-//         }
-
-//         MouseArea {
-//             id: mouseArea
-//             anchors.fill: parent
-//             onClicked: {
-//                 helper.download_();
-//                 console.log("File must be downloaded")
-//                 rectangle2.visible = true
-//                 parent.visible = false
-//             }
-//         }
-//     }
-
-//     Rectangle {
-//         visible: false;
-//         id: rectangle2
-//         x: parent.width / 8
-//         y: 10 * parent.height / 16
-//         width: 6 * parent.width / 8
-//         height: parent.height / 16
-//         color: "purple"
-//         Text {
-//             anchors.centerIn: parent
-//             text: "удалить кaтика"
-//             color: "white"
-//             font { bold: true; pixelSize: 48 }
-//         }
-
-//         MouseArea {
-//             id: mouseArea2
-//             anchors.fill: parent
-//             onClicked: {
-//                 parent.visible = false
-//                 rectangle1.visible = true
-//                 helper.delete_()
-//             }
-//         }
-//     }
     Button {
         anchors.centerIn: parent
         id: button
         width: 200
         height: 100
-        text: "push me"
+        text: "Applications"
         onClicked: {
+            if (!helper.checkInternetConnection_()) {
+                pageLoader.source = "Error.qml"
+                helper.quit_()
+            }
+
             applicationManager.download()
             while (applicationManager.hasNext()) {
                 if (parseInt(applicationManager.getId()) % 2 == 0) {
@@ -157,4 +114,6 @@ ApplicationWindow {
             }
         }
     }
+
+
 }
