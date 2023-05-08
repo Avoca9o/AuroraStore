@@ -14,8 +14,6 @@
 
 #include <stdio.h>
 
-#include "mdm-applications.h"
-
 class Helper : public QObject
 {
     Q_OBJECT
@@ -23,13 +21,14 @@ class Helper : public QObject
     QNetworkAccessManager AppListManager;
     QNetworkReply *currentDownload;
     const QString path = "/ho";
+    QString currentId;
 public:
     Helper();
     virtual ~Helper();
     void doDownload(const QUrl& url);
     bool saveToDisk(const QString& data);
     Q_INVOKABLE bool checkInternetConnection_();
-    Q_INVOKABLE void download_();
+    Q_INVOKABLE void download_(QString id);
     Q_INVOKABLE void delete_();
     Q_INVOKABLE void quit_();
 

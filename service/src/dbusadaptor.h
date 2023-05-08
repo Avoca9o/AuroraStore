@@ -1,28 +1,33 @@
-#ifndef DBUSADAPTER_H
-#define DBUSADAPTER_H
+#ifndef DBUSADAPTOR_H
+#define DBUSADAPTOR_H
 
 #include <QDBusContext>
 #include <QDBusMessage>
 #include <QDBusReply>
 #include <QtDBus/QDBusAbstractAdaptor>
+#include <QTimer>
 
-class DBusAdapter : public QDBusAbstractAdaptor
+class DBusAdaptor : public QDBusAbstractAdaptor
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "ru.auroraos.project1")
+    Q_CLASSINFO("D-Bus Interface", "dbusAdaptor")
     Q_CLASSINFO("D-Bus Introspection", ""
-"<interface name=\"ru.auroraos.project1\">\n"
+"<interface name=\"dbusAdaptor\">\n"
 "   <method name=\"installPackage\">"
 "       arg direction=\"in\" type=\"s\" name=\"path\""
 "   </method>\n"
 "</interface>\n")
 
 public:
-    DBusAdapter(QObject *parent = nullptr);
-    virtual ~DBusAdapter();
+    DBusAdaptor(QObject *parent = nullptr);
+    virtual ~DBusAdaptor();
 
 public slots:
     void installPackage(QString path);
+    void quit();
+
+private:
+    QTimer m_autoclose;
 };
 
-#endif // DBUSADAPTER_H
+#endif // DBUSADAPTOR_H

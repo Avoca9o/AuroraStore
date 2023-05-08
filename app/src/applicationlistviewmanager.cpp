@@ -8,7 +8,7 @@
 #include <QDBusMessage>
 #include <QtDBus/QDBusConnection>
 
-ApplicationListViewManager::ApplicationListViewManager(QObject *parent) : dBusAdapter(this)
+ApplicationListViewManager::ApplicationListViewManager(QObject *parent)
 {
 }
 
@@ -63,13 +63,13 @@ QString ApplicationListViewManager::getAuthor() {
 }
 
 void ApplicationListViewManager::invoke(QString id) {
-    QDBusMessage message = QDBusMessage::createMethodCall("ru.auroraos.project1",
-                                                          "/ru/auroraos/project1",
-                                                          "ru.auroraos.project1",
+    QDBusMessage message = QDBusMessage::createMethodCall("dbusAdaptor",
+                                                          "/dbusAdaptor",
+                                                          "dbusAdaptor",
                                                           "installPackage");
 
     QList<QVariant> args;
-    args.append(path + "me/defaultuser/myapp.rpm");
+    args.append(path + "me/defaultuser/" + id + ".rpm");
     message.setArguments(args);
 
     auto replpy = QDBusConnection::sessionBus().call(message);

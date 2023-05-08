@@ -36,26 +36,33 @@
 *******************************************************************************/
 
 #include <auroraapp.h>
-#include "helper.h"
-#include "applicationlistviewmanager.h"
-#include "dbusadapter.h"
-#include <QtQuick>
+#include "dbusadaptor.h"
+#include <QCoreApplication>
+#include <QDBusConnectionInterface>
 
+#include <unistd.h>
+
+const char *SERVICE_NAME = "dbusAdaptor.ru";
+const char *OBJECT_PATH = "/dbusAdaptor";
 
 int main(int argc, char *argv[])
 {
-    qmlRegisterType<Helper>("Template", 1, 0, "Helper");
-    qmlRegisterType<ApplicationListViewManager>("Template", 1, 0, "ApplicationListViewManager");
-    qmlRegisterType<DBusAdapter>("Template", 1, 0, "DBusAdapter");
 
-    QScopedPointer<QGuiApplication> application(Aurora::Application::application(argc, argv));
-    application->setOrganizationName(QStringLiteral("ru.auroraos"));
-    application->setApplicationName(QStringLiteral("project1"));
+    QCoreApplication app(argc, argv);
 
-    QScopedPointer<QQuickView> view(Aurora::Application::createView());
-    view->setSource(Aurora::Application::pathTo(QStringLiteral("qml/project1.qml")));
-    view->show();
+    DBusAdaptor dbusAdaptor;
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    if (!connection.registerObject(OBJECT_PATH, &dbusAdaptor)) {
+        qFatal("Cannot register object at %s", SERVICE_NAME);
+    }
 
+    if (!connection.registerService(SERVICE_NAME)) {
+        qFatal("Cannot register D-Bus service at %s", SERVICE_NAME);
+    }
 
-    return application->exec();
+    qDebug("DBus adapter created\n");
+
+    sleep(1000000);
+
+    return app.exec();
 }

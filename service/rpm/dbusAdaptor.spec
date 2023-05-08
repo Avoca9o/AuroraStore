@@ -1,4 +1,4 @@
-Name:       ru.auroraos.project1
+Name:       dbusAdaptor
 
 Summary:    My Aurora OS Application
 Version:    0.1
@@ -21,7 +21,7 @@ BuildRequires:  desktop-file-utils
 Short description of my Aurora OS Application
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %qmake5
@@ -29,15 +29,11 @@ Short description of my Aurora OS Application
 
 %install
 rm -rf %{buildroot}
-%qmake5_install
-
-desktop-file-install --delete-original         --dir %{buildroot}%{_datadir}/applications                %{buildroot}%{_datadir}/applications/*.desktop
+%make_install
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}
 %defattr(644,root,root,-)
 %{_datadir}/%{name}
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/dbus-1/services/*.service

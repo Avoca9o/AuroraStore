@@ -41,12 +41,10 @@ CONFIG += \
     auroraapp \
 
 PKGCONFIG += \
-    sailfishmdm \
     sailfishpolicy
 
 SOURCES += \
     src/applicationlistviewmanager.cpp \
-    src/dbusadapter.cpp \
     src/helper.cpp \
     src/main.cpp
 
@@ -54,18 +52,8 @@ QT += \
     network \
     dbus
 
-dbus_adaptor.files = ./src/dbus/ru.auroraos.aurorastore.xml
-
-DBUS_ADAPTORS += dbus_adaptor
-
-service.files = ./src/dbus/ru.auroraos.project1.service
-service.path = /usr/share/dbus-1/services
-
-INSTALLS += service
-
 HEADERS += \
     src/applicationlistviewmanager.h \
-    src/dbusadapter.h \
     src/helper.h
 
 DISTFILES += \

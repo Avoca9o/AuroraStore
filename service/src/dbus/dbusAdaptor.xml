@@ -23,8 +23,8 @@
  **/
 -->
 
-<node name="/ru/auroraos/project1">
-  <interface name="ru.auroraos.project1">
+<node name="/dbusAdaptor">
+  <interface name="dbusAdaptor">
     <method name="installPackage">
       <arg direction="in" type="s" name="path"/>
     </method>

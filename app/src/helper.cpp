@@ -52,12 +52,13 @@ void Helper::downloadApplicationListFinished(QNetworkReply *replyAL) {
 
 void Helper::downloadFinished(QNetworkReply *reply)
 {
-    saveToDisk(path + "me/defaultuser/myapp.rpm");
+    saveToDisk(path + "me/defaultuser/" + currentId + ".rpm");
     reply->deleteLater();
 }
 
-void Helper::download_() {
-    QUrl url("http://5.63.153.190:8000/download/file/1");
+void Helper::download_(QString id) {
+    QUrl url("http://5.63.153.190:8000/download/file/" + id);
+    currentId = id;
     doDownload(url);
 }
 
