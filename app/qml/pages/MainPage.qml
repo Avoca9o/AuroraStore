@@ -110,14 +110,13 @@ ApplicationWindow {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    if (!helper.checkInternetConnection_()) {
-                        noInternetMessage.visible = true
-                        exitButton.visible = true
-                        listView.visible = false
-                        return
-                    }
-                    helper.download_(model.id);
-                    applicationManager.invoke(model.id);
+                    helper.setCurrentId(model.id);
+                    listView.visible = false;
+                    downloadButton.visible = true;
+                    homeButton.visible = true;
+                    info.visible = true;
+                    info.text = applicationManager.getName(model.id) + "\n" + applicationManager.getVersion(model.id)
+                        + "\n" + applicationManager.getAuthor(model.id) + "\n" + applicationManager.getLongDesctiption(model.id);
                 }
             }
         }
@@ -125,9 +124,9 @@ ApplicationWindow {
 
     Text {
         id: noInternetMessage
-        text: "Нет интернета!"
-        color: "red"
-        x: 230
+        text: "No Internet connection!"
+        color: "orange"
+        x: 200
         y: 400
         visible: false
     }
@@ -137,10 +136,60 @@ ApplicationWindow {
         id: exitButton
         width: 150
         height: 100
-        text: "Выйти"
+        text: "Exit"
         visible: false
         onClicked: {
             helper.quit_()
+        }
+    }
+
+    TextArea {
+        id: info
+        text: ""
+        width: parent.width
+        height: parent.height - 250
+        x: 0
+        y: 0
+        visible: false
+        wrapMode: Text.WordWrap
+        horizontalAlignment: TextEdit.horizontalAlignment
+    }
+
+    Button {
+        id: downloadButton
+        visible: false
+        text: "Download"
+        y: parent.height - 250
+        x: 150
+        anchors.bottom: parent.bottomMargin
+        anchors.horizontalCenter: listView.horizontalCenter
+
+        onClicked: {
+            if (!helper.checkInternetConnection_()) {
+                noInternetMessage.visible = true
+                exitButton.visible = true
+                downloadButton.visible = false;
+                homeButton.visible = false;
+                info.visible = false;
+                return
+            }
+            helper.download_();
+            applicationManager.invoke(helper.getCurrentId());
+        }
+    }
+
+    Button {
+        id: homeButton
+        visible: false
+        anchors.bottom: parent.bottomMargin
+        y: parent.height - 100
+        x: 0
+        text: "Home"
+        onClicked: {
+            listView.visible = true;
+            downloadButton.visible = false;
+            homeButton.visible = false;
+            info.visible = false;
         }
     }
 }

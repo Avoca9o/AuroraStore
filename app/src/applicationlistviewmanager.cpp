@@ -38,6 +38,7 @@ void ApplicationListViewManager::download() {
         app.name = map["name"].toString();
         app.version = map["version"].toString();
         app.author = map["developer"].toString();
+        app.longDescription = map["long_description"].toString();
         base.append(app);
     }
 }
@@ -50,16 +51,32 @@ QString ApplicationListViewManager::getId() {
     return QString::number(i);
 }
 
-QString ApplicationListViewManager::getName() {
-    return base[i].name;
+QString ApplicationListViewManager::getName(QString id) {
+    if (id == "") {
+        return base[i].name;
+    }
+    return base[id.toInt() - 1].name;
 }
 
-QString ApplicationListViewManager::getVersion() {
-    return base[i].version;
+QString ApplicationListViewManager::getVersion(QString id) {
+    if (id == "") {
+        return base[i].version;
+    }
+    return base[id.toInt() - 1].version;
 }
 
-QString ApplicationListViewManager::getAuthor() {
-    return base[i++].author;
+QString ApplicationListViewManager::getLongDesctiption(QString id) {
+    if (id == "") {
+        return base[i].longDescription;
+    }
+    return base[id.toInt() - 1].longDescription;
+}
+
+QString ApplicationListViewManager::getAuthor(QString id) {
+    if (id == "") {
+        return base[i++].author;
+    }
+    return base[id.toInt() - 1].author;
 }
 
 void ApplicationListViewManager::invoke(QString id) {

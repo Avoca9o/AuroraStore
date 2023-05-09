@@ -54,9 +54,8 @@ void Helper::downloadFinished(QNetworkReply *reply)
     reply->deleteLater();
 }
 
-void Helper::download_(QString id) {
-    QUrl url("http://5.63.153.190:8000/download/file/" + id);
-    currentId = id;
+void Helper::download_() {
+    QUrl url("http://5.63.153.190:8000/download/file/" + currentId);
     doDownload(url);
 }
 
@@ -75,6 +74,14 @@ bool Helper::checkInternetConnection_() {
     }
     socket->close();
     return true;
+}
+
+void Helper::setCurrentId(QString id) {
+    currentId = id;
+}
+
+QString Helper::getCurrentId() {
+    return currentId;
 }
 
 void Helper::quit_() {
